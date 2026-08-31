@@ -1,6 +1,7 @@
 package com.example.myappauthentification.app.ecran2
 
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,7 +23,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.border
 import androidx.compose.material3.*
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 
 
 @Composable
@@ -38,17 +42,24 @@ fun VerificationPage(
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .shadow(
+                elevation = 4.dp,
+                shape = RoundedCornerShape(15.dp))
             .border(
-                width = 1.dp,
-                color = Color.LightGray,
-                shape = RoundedCornerShape(4.dp)
+                width = 2.dp,
+                color = Color.White,
+                shape = RoundedCornerShape(12.dp)
             )
-            .padding(24.dp)
+            .background(color = Color.White,
+                shape = RoundedCornerShape(15.dp))
+            .padding(26.dp)
     ) {
 
         Text(
             text = "Vérification",
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleLarge,
+            fontSize = 28.sp,
+            fontWeight = FontWeight.SemiBold
         )
 
         Spacer(
@@ -56,7 +67,8 @@ fun VerificationPage(
         )
 
         Text(
-            text = "Entrez le code reçu par SMS."
+            text = "Entrez le code reçu par SMS.",
+            fontSize = 20.sp
         )
 
         Spacer(
@@ -76,7 +88,8 @@ fun VerificationPage(
             singleLine = true,
             placeholder = {
                 Text("000000")
-            }
+            },
+            shape = RoundedCornerShape(12.dp)
         )
 
         Spacer(
@@ -101,7 +114,8 @@ fun VerificationPage(
             Button(
                 onClick = onNext,
                 modifier = Modifier,
-                colors = ButtonDefaults.buttonColors(containerColor =  Color(0xFFEF3155))
+                colors = ButtonDefaults.buttonColors(
+                    containerColor =  Color(0xFFEF3155))
             ) {
 
                 Text(

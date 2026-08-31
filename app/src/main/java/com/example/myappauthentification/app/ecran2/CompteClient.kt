@@ -52,7 +52,7 @@ Box( modifier = Modifier
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp)
+            .padding(34.dp)
     ) {
 
         Spacer(
@@ -185,7 +185,7 @@ Box( modifier = Modifier
         }
 
         Spacer(
-            modifier = Modifier.height(69.dp)
+            modifier = Modifier.height(79.dp)
         )
 
 
