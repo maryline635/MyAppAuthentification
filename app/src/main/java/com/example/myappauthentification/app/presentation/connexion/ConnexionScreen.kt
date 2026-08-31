@@ -10,8 +10,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -50,8 +52,7 @@ fun Connexion(
         // TELEPHONE LOGIN
         Box(
             modifier = Modifier
-                .width(125.dp)
-                .height(265.dp)
+                .fillMaxSize()
                 .background(
                     color = Color.White
                     //shape = RoundedCornerShape(18.dp)
@@ -62,7 +63,7 @@ fun Connexion(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(145.dp)
+                    .height(445.dp)
                     .background(
                         color = Color(0xFFEF3155),
                         shape = RoundedCornerShape(
@@ -76,49 +77,48 @@ fun Connexion(
             // Carte blanche
             Box(
                 modifier = Modifier
-                    .width(103.dp)
-                    .height(200.dp)
+                    .fillMaxWidth(0.85f)
+                    .wrapContentHeight()
                     .align(Alignment.TopCenter)
-                    .padding(top = 39.dp)
-                    .shadow(elevation = 2.dp)
+                    .offset(y = 245.dp)
+                    .shadow(
+                        elevation = 4.dp,
+                        shape = RoundedCornerShape(15.dp)
+                    )
                     .background(
                         color = Color.White,
-                        shape = RoundedCornerShape(5.dp)
+                        shape = RoundedCornerShape(15.dp)
                     )
+                    .padding(35.dp)
             ) {
 
 
                 Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(
-                            horizontal = 8.dp,
-                            vertical = 5.dp
-                        ),
+                    modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
                     // GRAND LOGIN
                     Text(
                         text = "Login",
-                        fontSize = 15.sp,
+                        fontSize = 38.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = Color.Black,
                         modifier = Modifier
                             .align(Alignment.Start)
-                            .padding(top = 2.dp, bottom = 19.dp)
+                            .padding( start = 2.dp, bottom = 70.dp)
                     )
 
                     // TELEPHONE
                     Text(
                         text = "Phone Number",
-                        fontSize = 6.sp,
+                        fontSize = 22.sp,
                         modifier = Modifier
                             .fillMaxWidth()
                     )
 
                     Spacer(
-                        modifier = Modifier.height(4.dp)
+                        modifier = Modifier.height(8.dp)
                     )
 
                     OutlinedTextField(
@@ -131,18 +131,18 @@ fun Connexion(
                         singleLine = true,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(19.dp),
+                            .height(39.dp),
                         shape = RoundedCornerShape(12.dp)
                     )
 
                     Spacer(
-                        modifier = Modifier.height(8.dp)
+                        modifier = Modifier.height(30.dp)
                     )
 
                     // Password
                     Text(
                         text = "Password",
-                        fontSize = 6.sp,
+                        fontSize = 22.sp,
                         modifier = Modifier
                             .fillMaxWidth()
                     )
@@ -163,32 +163,32 @@ fun Connexion(
                         singleLine = true,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(19.dp),
+                            .height(39.dp),
                         shape = RoundedCornerShape(12.dp)
                     )
 
                     Spacer(
-                        modifier = Modifier.height(4.dp)
+                        modifier = Modifier.height(12.dp)
                     )
 
                     Text(
                         text = "Forgot Password?",
-                        fontSize = 4.sp,
+                        fontSize = 19.sp,
                         color = Color.Gray,
                         modifier = Modifier
                             .align(Alignment.End)
                     )
 
                     Spacer(
-                        modifier = Modifier.height(10.dp)
+                        modifier = Modifier.height(40.dp)
                     )
 
                     Button(
                         onClick = {},
                         modifier = Modifier
-                            .width(49.dp)
-                            .height(18.dp),
-                        shape = RoundedCornerShape(12.dp),
+                            .width(95.dp)
+                            .height(39.dp),
+                        shape = RoundedCornerShape(14.dp),
                         contentPadding = PaddingValues(0.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color(0xFFEF3155)
@@ -197,7 +197,7 @@ fun Connexion(
 
                         Text(
                             text = "Login",
-                            fontSize = 8.sp
+                            fontSize = 20.sp
                         )
                     }
                 }
@@ -216,10 +216,10 @@ fun Connexion(
                         append("Sign Up")
                     }
                 },
-                fontSize = 6.sp,
+                fontSize = 20.sp,
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .padding(bottom = 14.dp)
+                    .padding(bottom = 29.dp)
                     .clickable {
                         onSignUp()
                     }
