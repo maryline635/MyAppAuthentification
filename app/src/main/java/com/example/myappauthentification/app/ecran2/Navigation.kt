@@ -7,13 +7,15 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.myappauthentification.CompteClient
 import com.example.myappauthentification.Connexion
+import com.example.myappauthentification.app.dashboard.Dashboard
 import com.example.myappauthentification.app.presentation.connexion.ConnexionViewModel
-import com.example.myappauthentification.app.presentation.contact.ContactScreen
-import com.example.myappauthentification.app.presentation.contact.ContactViewModel
 
-object Routes {
-    const val CONNEXION = "connexion"
-    const val COMPTE_CLIENT = "compte_client"
+
+sealed class Routes(val route: String) {
+
+    data object Connexion : Routes("connexion")
+    data object CompteClient : Routes("compte_client")
+    data object Dashboard : Routes("dashboard")
 }
 
 @SuppressLint("ViewModelConstructorInComposable")
@@ -24,28 +26,59 @@ fun Navigation() {
 
     NavHost(
         navController = navController,
-        startDestination = Routes.CONNEXION
+        startDestination = Routes.Connexion.route
     ) {
 
-        // LOGIN
-        composable(Routes.CONNEXION) {
+        // CONNEXION
+        composable(
+            route = Routes.Connexion.route
+        ) {
 
             Connexion(
                 viewModel = ConnexionViewModel(),
 
                 onSignUp = {
                     navController.navigate(
-                        Routes.COMPTE_CLIENT
+                        Routes.CompteClient.route
+                    )
+                },
+
+                onLogin = {
+                    navController.navigate(
+                        Routes.Dashboard.route
                     )
                 }
             )
         }
 
-
         // COMPTE CLIENT
-        composable(Routes.COMPTE_CLIENT) {
+        composable(
+            route = Routes.CompteClient.route
+        ) {
 
-            CompteClient()
+            CompteClient(
+                onFinish = {
+                    navController.navigate(
+                        Routes.Dashboard.route
+                    ) {
+                        popUpTo(Routes.Connexion.route) {
+                            inclusive = true
+                        }
+                    }
+                }
+            )
+        }
+
+        // DASHBOARD
+        composable(
+            route = Routes.Dashboard.route
+        ) {
+
+            Dashboard(
+                onSettingClick = {
+                    // action paramètres
+                }
+            )
         }
     }
 }

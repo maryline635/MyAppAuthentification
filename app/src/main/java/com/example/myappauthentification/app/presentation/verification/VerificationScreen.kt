@@ -27,17 +27,18 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.example.myappauthentification.app.presentation.verification.VerificationIntent
+import com.example.myappauthentification.app.presentation.verification.VerificationState
 
 
 @Composable
 fun VerificationPage(
-    onBack: () -> Unit ,
+    state: VerificationState,
+    onIntent: (VerificationIntent) -> Unit,
+    onBack: () -> Unit,
     onNext: () -> Unit
 ) {
 
-    var code by remember {
-        mutableStateOf("")
-    }
 
     Column(
         modifier = Modifier
@@ -78,19 +79,30 @@ fun VerificationPage(
 
         // CODE
         OutlinedTextField(
-            value = code,
-            onValueChange = {
-                if (it.length <= 6) {
-                    code = it
-                }
+            value = state.code,
+            onValueChange = { code ->
+
+                onIntent(
+                    VerificationIntent.CodeChanged(code)
+                )
             },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
             placeholder = {
                 Text("000000")
             },
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(12.dp),
+            isError = state.errorMessage != null
         )
+
+        // MESSAGE D'ERREUR
+        if (state.errorMessage != null) {
+
+            Text(
+                text = state.errorMessage,
+                color = MaterialTheme.colorScheme.error
+            )
+        }
 
         Spacer(
             modifier = Modifier.height(24.dp)
@@ -126,11 +138,3 @@ fun VerificationPage(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun VerificationPagePreview() {
-    VerificationPage(
-        onBack = {},
-        onNext = {}
-    )
-}

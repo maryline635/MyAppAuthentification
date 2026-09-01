@@ -15,35 +15,35 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.myappauthentification.app.presentation.profil.ProfilIntent
+import com.example.myappauthentification.app.presentation.profil.ProfilState
 
 
 @Composable
 fun ProfilPage(
+    state: ProfilState,
+    onIntent: (ProfilIntent) -> Unit,
     onBack: () -> Unit,
     onFinish: () -> Unit
 ) {
 
-    var nom by remember { mutableStateOf("") }
-
-    var prenom by remember { mutableStateOf("") }
-
-    var langue by remember { mutableStateOf("FR") }
-
-    var motDePasse by remember { mutableStateOf("FR") }
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .shadow(
                 elevation = 4.dp,
-                shape = RoundedCornerShape(15.dp))
+                shape = RoundedCornerShape(15.dp)
+            )
             .border(
                 width = 1.dp,
                 color = Color.White,
                 shape = RoundedCornerShape(12.dp)
             )
-            .background(color = Color.White,
-                shape = RoundedCornerShape(15.dp))
+            .background(
+                color = Color.White,
+                shape = RoundedCornerShape(15.dp)
+            )
             .padding(24.dp)
     ) {
 
@@ -58,7 +58,6 @@ fun ProfilPage(
             modifier = Modifier.height(24.dp)
         )
 
-
         // NOM
         Text(
             text = "Nom",
@@ -70,9 +69,12 @@ fun ProfilPage(
         )
 
         OutlinedTextField(
-            value = nom,
-            onValueChange = {
-                nom = it
+            value = state.nom,
+            onValueChange = { nom ->
+
+                onIntent(
+                    ProfilIntent.NomChanged(nom)
+                )
             },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
@@ -82,7 +84,6 @@ fun ProfilPage(
         Spacer(
             modifier = Modifier.height(16.dp)
         )
-
 
         // PRENOM
         Text(
@@ -95,9 +96,12 @@ fun ProfilPage(
         )
 
         OutlinedTextField(
-            value = prenom,
-            onValueChange = {
-                prenom = it
+            value = state.prenom,
+            onValueChange = { prenom ->
+
+                onIntent(
+                    ProfilIntent.PrenomChanged(prenom)
+                )
             },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
@@ -107,7 +111,6 @@ fun ProfilPage(
         Spacer(
             modifier = Modifier.height(16.dp)
         )
-
 
         // LANGUE
         Text(
@@ -120,14 +123,17 @@ fun ProfilPage(
         ) {
 
             RadioButton(
-                selected = langue == "FR",
+                selected = state.langue == "FR",
                 onClick = {
-                    langue = "FR"
+
+                    onIntent(
+                        ProfilIntent.LangueChanged("FR")
+                    )
                 },
                 colors = RadioButtonDefaults.colors(
                     selectedColor = Color(0xFFEF3155),
                     unselectedColor = Color.Gray
-            )
+                )
             )
 
             Text("FR")
@@ -137,14 +143,17 @@ fun ProfilPage(
             )
 
             RadioButton(
-                selected = langue == "EN",
+                selected = state.langue == "EN",
                 onClick = {
-                    langue = "EN"
+
+                    onIntent(
+                        ProfilIntent.LangueChanged("EN")
+                    )
                 },
                 colors = RadioButtonDefaults.colors(
                     selectedColor = Color(0xFFEF3155),
                     unselectedColor = Color.Gray
-            )
+                )
             )
 
             Text("EN")
@@ -155,20 +164,45 @@ fun ProfilPage(
         )
 
         // MOT DE PASSE
-        Text( text = "Mot de passe", fontSize = 15.sp )
+        Text(
+            text = "Mot de passe",
+            fontSize = 15.sp
+        )
 
-        Spacer( modifier = Modifier.height(8.dp) )
+        Spacer(
+            modifier = Modifier.height(8.dp)
+        )
 
         OutlinedTextField(
-            value = motDePasse,
-            onValueChange = { motDePasse = it },
+            value = state.motDePasse,
+            onValueChange = { motDePasse ->
+
+                onIntent(
+                    ProfilIntent.MotDePasseChanged(motDePasse)
+                )
+            },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
             shape = RoundedCornerShape(12.dp)
         )
 
-        Spacer( modifier = Modifier.height(24.dp) )
+        // ERREUR
+        if (state.errorMessage != null) {
 
+            Spacer(
+                modifier = Modifier.height(8.dp)
+            )
+
+            Text(
+                text = state.errorMessage,
+                color = MaterialTheme.colorScheme.error,
+                fontSize = 14.sp
+            )
+        }
+
+        Spacer(
+            modifier = Modifier.height(24.dp)
+        )
 
         // BOUTONS
         Row(
@@ -181,30 +215,29 @@ fun ProfilPage(
             ) {
 
                 Text(
-                    text = "Retour", fontSize = 15.sp
-
+                    text = "Retour",
+                    fontSize = 15.sp
                 )
             }
 
             Button(
-                onClick = onFinish,
-                modifier = Modifier,
-                colors = ButtonDefaults.buttonColors(containerColor =  Color(0xFFEF3155))
+                onClick = {
+
+                    onIntent(
+                        ProfilIntent.FinishClicked
+                    )
+                },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFFEF3155)
+                )
             ) {
 
                 Text(
-                    text = "Enregistrer" , fontSize = 15.sp
+                    text = "Enregistrer",
+                    fontSize = 15.sp
                 )
             }
         }
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun ProfilPagePreview() {
-    ProfilPage(
-        onBack = {},
-        onFinish = {}
-    )
-}

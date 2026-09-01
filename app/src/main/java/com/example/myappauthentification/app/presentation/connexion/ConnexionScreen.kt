@@ -44,7 +44,8 @@ import com.example.myappauthentification.app.presentation.connexion.ConnexionVie
 @Composable
 fun Connexion(
     viewModel: ConnexionViewModel,
-    onSignUp: () -> Unit
+    onSignUp: () -> Unit,
+    onLogin: () -> Unit
 ) {
 
     val state by viewModel.state.collectAsState()
@@ -80,7 +81,7 @@ fun Connexion(
                     .fillMaxWidth(0.85f)
                     .wrapContentHeight()
                     .align(Alignment.TopCenter)
-                    .offset(y = 245.dp)
+                    .offset(y = 230.dp)
                     .shadow(
                         elevation = 4.dp,
                         shape = RoundedCornerShape(15.dp)
@@ -184,7 +185,9 @@ fun Connexion(
                     )
 
                     Button(
-                        onClick = {},
+                        onClick = {
+                            onLogin()
+                        },
                         modifier = Modifier
                             .width(95.dp)
                             .height(39.dp),

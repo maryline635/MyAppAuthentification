@@ -18,16 +18,24 @@ import com.example.myappauthentification.app.ecran2.ProfilPage
 import com.example.myappauthentification.app.ecran2.VerificationPage
 import com.example.myappauthentification.app.presentation.contact.ContactScreen
 import com.example.myappauthentification.app.presentation.contact.ContactViewModel
+import com.example.myappauthentification.app.presentation.profil.ProfilScreen
+import com.example.myappauthentification.app.presentation.profil.ProfilState
+import com.example.myappauthentification.app.presentation.profil.ProfilViewModel
+import com.example.myappauthentification.app.presentation.verification.VerificationState
+import com.example.myappauthentification.app.presentation.verification.VerificationViewModel
 
-@Preview
+
 @Composable
-fun CompteClient() {
+fun CompteClient(
+    onFinish: () -> Unit
+) {
 
     var currentPage by remember {
         mutableIntStateOf(1)
     }
 
-    val contactViewModel: ContactViewModel = viewModel()
+    val verificationViewModel: VerificationViewModel = viewModel()
+    val verificationState by verificationViewModel.state.collectAsState()
 
 Box( modifier = Modifier
     .background(
@@ -202,20 +210,16 @@ Box( modifier = Modifier
 
                 // PAGE 1
                 1 -> {
+                    // Première page
 
-                    ContactScreen(
-                        viewModel = contactViewModel,
-                        onNext = {
-                            currentPage = 2
-                        }
-                    )
+                    // Quand on clique suivant :
+                    // currentPage = 2
                 }
 
-
-                // PAGE 2
                 2 -> {
-
                     VerificationPage(
+                        state = verificationState,
+                        onIntent = verificationViewModel::onIntent,
                         onBack = {
                             currentPage = 1
                         },
@@ -225,21 +229,19 @@ Box( modifier = Modifier
                     )
                 }
 
-
-                // PAGE 3
                 3 -> {
-
-                    ProfilPage(
+                    ProfilScreen(
                         onBack = {
                             currentPage = 2
                         },
                         onFinish = {
-                            // Enregistrement final
+                            onFinish()
                         }
                     )
                 }
             }
+
+            }
         }
     }
-}
 }
