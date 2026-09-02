@@ -2,6 +2,7 @@ package com.example.myappauthentification.app.ecran2
 
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -24,6 +25,8 @@ fun Navigation() {
 
     val navController = rememberNavController()
 
+    val connexionViewModel: ConnexionViewModel = viewModel()
+
     NavHost(
         navController = navController,
         startDestination = Routes.Connexion.route
@@ -35,7 +38,7 @@ fun Navigation() {
         ) {
 
             Connexion(
-                viewModel = ConnexionViewModel(),
+                viewModel = connexionViewModel,
 
                 onSignUp = {
                     navController.navigate(
@@ -75,10 +78,15 @@ fun Navigation() {
         ) {
 
             Dashboard(
-                onSettingClick = {
-                    // action paramètres
+                onDeconnexionClick = {
+                    navController.navigate("connexion") {
+                        popUpTo("dashboard") {
+                            inclusive = true
+                        }
+                    }
                 }
             )
         }
     }
 }
+

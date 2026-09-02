@@ -27,6 +27,9 @@ fun ContactScreen(
         }
     }
 
+    // MODIFICATION :
+    // onNext supprimé ici car la navigation est déjà
+    // gérée par ContactEvent.NavigateToVerification
     ContactPage(
         state = state,
         onIntent = viewModel::onIntent

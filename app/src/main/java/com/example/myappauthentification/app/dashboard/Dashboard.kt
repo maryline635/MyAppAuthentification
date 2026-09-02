@@ -39,7 +39,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Dashboard(
-    onSettingClick:()-> Unit
+    onDeconnexionClick:()-> Unit
 ) {
 
 
@@ -102,7 +102,7 @@ fun Dashboard(
                     },
                     actions = {
 
-                        IconButton(onClick = onSettingClick
+                        IconButton(onClick = { }
                         ) {
                             Icon(
                                 imageVector = Icons.Default.AccountCircle,
@@ -150,7 +150,7 @@ fun Dashboard(
                                     },
                                     onClick = {
                                         moreMenu = false
-                                        onSettingClick()
+
                                     }
                                 )
                                 DropdownMenuItem(
@@ -165,7 +165,7 @@ fun Dashboard(
                                     },
                                     onClick = {
                                         moreMenu = false
-                                        onSettingClick()
+                                        onDeconnexionClick()
                                     }
                                 )
                             }
@@ -195,6 +195,6 @@ fun Dashboard(
 fun DashboardPreview() {
 
     Dashboard(
-        onSettingClick = {}
+        onDeconnexionClick = {}
     )
 }

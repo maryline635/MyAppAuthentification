@@ -111,9 +111,8 @@ fun ContactPage(
 
         // BOUTON
         Button(
-            onClick = {onIntent(
-                ContactIntent.ContinuerClicked
-            )
+            onClick = {
+                onIntent(ContactIntent.ContinuerClicked)
                       },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults

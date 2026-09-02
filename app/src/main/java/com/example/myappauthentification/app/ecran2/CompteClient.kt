@@ -34,6 +34,10 @@ fun CompteClient(
         mutableIntStateOf(1)
     }
 
+    val contactViewModel: ContactViewModel = viewModel()
+    val contactState by contactViewModel.state.collectAsState()
+
+
     val verificationViewModel: VerificationViewModel = viewModel()
     val verificationState by verificationViewModel.state.collectAsState()
 
@@ -210,10 +214,14 @@ Box( modifier = Modifier
 
                 // PAGE 1
                 1 -> {
-                    // Première page
-
-                    // Quand on clique suivant :
-                    // currentPage = 2
+                    // On utilise ContactScreen afin que les événements
+                    // du ContactViewModel soient correctement écoutés.
+                    ContactScreen(
+                        viewModel = contactViewModel,
+                        onNext = {
+                            currentPage = 2
+                        }
+                    )
                 }
 
                 2 -> {
