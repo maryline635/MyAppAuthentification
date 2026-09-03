@@ -5,7 +5,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.myappauthentification.app.ecran2.ProfilPage
+import com.example.myappauthentification.app.navigation.ProfilPage
 
 @Composable
 fun ProfilScreen(

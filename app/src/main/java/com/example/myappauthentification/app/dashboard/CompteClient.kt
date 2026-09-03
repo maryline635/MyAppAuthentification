@@ -10,18 +10,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.myappauthentification.app.ecran2.ContactPage
-import com.example.myappauthentification.app.ecran2.ProfilPage
-import com.example.myappauthentification.app.ecran2.VerificationPage
+import com.example.myappauthentification.app.navigation.VerificationPage
 import com.example.myappauthentification.app.presentation.contact.ContactScreen
 import com.example.myappauthentification.app.presentation.contact.ContactViewModel
 import com.example.myappauthentification.app.presentation.profil.ProfilScreen
-import com.example.myappauthentification.app.presentation.profil.ProfilState
-import com.example.myappauthentification.app.presentation.profil.ProfilViewModel
-import com.example.myappauthentification.app.presentation.verification.VerificationState
 import com.example.myappauthentification.app.presentation.verification.VerificationViewModel
 
 

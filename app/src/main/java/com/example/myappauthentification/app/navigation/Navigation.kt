@@ -1,4 +1,4 @@
-package com.example.myappauthentification.app.ecran2
+package com.example.myappauthentification.app.navigation
 
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable

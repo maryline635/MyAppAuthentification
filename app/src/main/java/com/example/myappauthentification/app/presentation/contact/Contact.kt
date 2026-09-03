@@ -1,4 +1,4 @@
-package com.example.myappauthentification.app.ecran2
+package com.example.myappauthentification.app.navigation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

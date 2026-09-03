@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.example.myappauthentification.app.ecran2.ContactPage
+import com.example.myappauthentification.app.navigation.ContactPage
 
 @Composable
 fun ContactScreen(

@@ -89,7 +89,7 @@ fun Connexion(
                         .padding(top = 45.dp),
                             contentScale = ContentScale.Fit,
                     colorFilter = ColorFilter.tint(
-                        Color(0xFFEF3155),
+                        Color(0xFFED3155),
                         blendMode = BlendMode.Multiply
                     )
                 )
