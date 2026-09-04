@@ -67,7 +67,7 @@ Box( modifier = Modifier
 
         // TITRE
         Text(
-            text = "Compte client",
+            text = "Créer un compte",
             style = MaterialTheme.typography.headlineMedium
         )
 

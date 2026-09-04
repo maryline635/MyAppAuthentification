@@ -1,12 +1,15 @@
 package com.example.myappauthentification.app.presentation.connexion
 
 import androidx.lifecycle.ViewModel
+import com.example.myappauthentification.app.domain.usecase.LoginUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class ConnexionViewModel : ViewModel() {
+class ConnexionViewModel (
+    private val loginUseCase: LoginUseCase
+): ViewModel() {
 
     private val _state = MutableStateFlow(
         ConnexionState()

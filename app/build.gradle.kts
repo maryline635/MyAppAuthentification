@@ -70,4 +70,7 @@ dependencies {
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.client.serialization.kotlinx.json)
     implementation(libs.ktor.client.logging)
+
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
 }

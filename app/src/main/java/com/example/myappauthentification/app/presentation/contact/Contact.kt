@@ -41,7 +41,7 @@ fun ContactPage(
     ) {
 
         Text(
-            text = "Créer un compte",
+            text = "Contact",
             style = MaterialTheme.typography.titleLarge,
             fontSize = 28.sp,
             fontWeight = FontWeight.SemiBold

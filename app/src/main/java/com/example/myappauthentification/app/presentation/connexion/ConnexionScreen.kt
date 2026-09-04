@@ -45,16 +45,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myappauthentification.app.presentation.connexion.ConnexionIntent
 import com.example.myappauthentification.app.presentation.connexion.ConnexionViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun Connexion(
-    viewModel: ConnexionViewModel,
+    viewModel: ConnexionViewModel = koinViewModel (),
     onSignUp: () -> Unit,
     onLogin: () -> Unit
 ) {
 
     val state by viewModel.state.collectAsState()
+
+    val isFormValid = state.username.isNotBlank() && state.password.isNotBlank()
 
         // TELEPHONE LOGIN
         Box(
@@ -210,6 +213,7 @@ fun Connexion(
                         onClick = {
                             onLogin()
                         },
+                        enabled = isFormValid,
                         modifier = Modifier
                             .width(95.dp)
                             .height(39.dp),
