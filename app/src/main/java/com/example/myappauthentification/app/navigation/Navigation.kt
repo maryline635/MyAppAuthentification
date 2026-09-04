@@ -25,7 +25,6 @@ fun Navigation() {
 
     val navController = rememberNavController()
 
-    val connexionViewModel: ConnexionViewModel = viewModel()
 
     NavHost(
         navController = navController,
@@ -38,7 +37,6 @@ fun Navigation() {
         ) {
 
             Connexion(
-                viewModel = connexionViewModel,
 
                 onSignUp = {
                     navController.navigate(
